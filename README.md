@@ -1,6 +1,8 @@
-# ucloud_enhanced
+# ucloud_plus
 
 北京邮电大学云邮教学空间优化脚本
+
+BUPT ucloud website enhancement script
 
 - [x] 更紧密的课程列表
   - [ ] 删除无意义的图片
