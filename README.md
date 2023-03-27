@@ -5,9 +5,6 @@ BUPT ucloud website enhancement script
 
 <div align="center"><img id="ucloud_icon" width="150" alt="ucloud_icon" src="https://ucloud.bupt.edu.cn/favicon.ico"></div>
 
-<br>
-
-<div align="center">
 
 - [安装](#安装)
 - [功能](doc/features/features.md)
@@ -29,3 +26,8 @@ BUPT ucloud website enhancement script
 - [ ] 在进入具体作业页面后显示课程名称
 
 ## 特别鸣谢
+
+- [React](https://react.dev/)
+- [Bootstrap](https://getbootstrap.com/)
+- [popper-core](https://github.com/popperjs/popper-core)
+- [Bilibili-Evolved]([the1812/Bilibili-Evolved: 强大的哔哩哔哩增强脚本 (github.com)](https://github.com/the1812/Bilibili-Evolved))
