@@ -14,7 +14,7 @@ BUPT ucloud website enhancement script
 
 | jsDelivr 源                                                  | Github 源                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/@master-cdn/dist/main.js) | [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js) |
+| [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master-cdn/dist/main.js) | [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js) |
 
 如果 TamperMonkey 没有自动检测，请手动到油猴的管理面板中通过 URL 添加。
 
@@ -30,4 +30,4 @@ BUPT ucloud website enhancement script
 - [React](https://react.dev/)
 - [Bootstrap](https://getbootstrap.com/)
 - [popper-core](https://github.com/popperjs/popper-core)
-- [Bilibili-Evolved]([the1812/Bilibili-Evolved: 强大的哔哩哔哩增强脚本 (github.com)](https://github.com/the1812/Bilibili-Evolved))
+- [Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved)
