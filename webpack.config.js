@@ -1,8 +1,10 @@
 const path = require("path");
+const webpack = require("webpack");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-    entry: "./src/index.js",
     mode: "production",
+    entry: "./src/index.js",
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
@@ -25,10 +27,38 @@ module.exports = {
             },
         ],
     },
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false,
+                terserOptions: {
+                    output: {
+                        comments:
+                            /==\/?UserScript==|^[ ]?@|eslint-disable|spell-checker/i,
+                    },
+                },
+            }),
+        ],
+    },
     performance: {
         hints: false,
     },
     resolve: {
         extensions: [".js", ".jsx"],
     },
+    plugins: [
+        new webpack.BannerPlugin({
+            banner: `// ==UserScript==
+// @name         ucloud_plus
+// @version      1.0
+// @description  北京邮电大学云邮教学空间优化脚本
+// @author       5upernova-heng
+// @match        https://ucloud.bupt.edu.cn/uclass/*
+// @icon         https://ucloud.bupt.edu.cn/favicon.ico
+// ==/UserScript==
+            `,
+            raw: true,
+            entryOnly: true,
+        }),
+    ],
 };
