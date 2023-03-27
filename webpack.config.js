@@ -55,7 +55,7 @@ module.exports = {
 // @author       5upernova-heng
 // @match        https://ucloud.bupt.edu.cn/uclass/*
 // @downloadURL  https://raw.githubusercontent.com/5upernova-heng/ucloud_plus/master/dist/main.js
-// @updateURL  https://raw.githubusercontent.com/5upernova-heng/ucloud_plus/master/dist/main.js
+// @updateURL    https://raw.githubusercontent.com/5upernova-heng/ucloud_plus/master/dist/main.js
 // @icon         https://ucloud.bupt.edu.cn/favicon.ico
 // ==/UserScript==
             `,
