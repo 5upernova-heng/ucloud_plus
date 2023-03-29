@@ -12,9 +12,9 @@ BUPT ucloud website enhancement script
 
 ## 安装
 
-| jsDelivr 源                                                  | Github 源                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master-cdn/dist/main.js) | [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js) |
+| jsDelivr 源                                                  |
+| ------------------------------------------------------------ |
+| [安装](https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js) |
 
 如果 TamperMonkey 没有自动检测，请手动到油猴的管理面板中通过 URL 添加。
 

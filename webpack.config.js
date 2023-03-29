@@ -49,14 +49,16 @@ module.exports = {
     plugins: [
         new webpack.BannerPlugin({
             banner: `// ==UserScript==
-// @name         ucloud_plus
-// @version      1.0
-// @description  北京邮电大学云邮教学空间优化脚本
-// @author       5upernova-heng
-// @match        https://ucloud.bupt.edu.cn/uclass/*
-// @downloadURL  https://raw.githubusercontent.com/5upernova-heng/ucloud_plus/master/dist/main.js
-// @updateURL    https://raw.githubusercontent.com/5upernova-heng/ucloud_plus/master/dist/main.js
-// @icon         https://ucloud.bupt.edu.cn/favicon.ico
+// @name    ucloud_plus
+// @version 1.0
+// @description 北京邮电大学云邮教学空间优化脚本
+// @author  5upernova-heng
+// @grant   GM_getValue
+// @grant   GM_setValue
+// @match   https://ucloud.bupt.edu.cn/uclass/*
+// @downloadURL https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js
+// @updateURL   https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js
+// @icon    https://ucloud.bupt.edu.cn/favicon.ico
 // ==/UserScript==
             `,
             raw: true,
