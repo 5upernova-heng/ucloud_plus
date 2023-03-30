@@ -26,7 +26,7 @@ const PluginList = ({ origin }) => {
             </button>
 
             <ul
-                class="dropdown-menu"
+                className="dropdown-menu"
                 style={
                     isHover
                         ? {
