@@ -1,51 +1,49 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-class PluginItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: false, text: "" };
-    }
-    async componentDidMount() {
-        const { text, handler, origin } = this.props;
-        const value = await GM.getValue(text, false);
+const PluginItem = ({ text, handler, origin, collapseTarget }) => {
+    const [defaultValue, setDefaultValue] = useState(false);
+    const checkHandler = (event) => {
+        const value = event.target.checked;
         handler(value, origin);
-        this.setState({ value });
-    }
-    render() {
-        const { text, handler, origin } = this.props;
-        const checkHandler = (event) => {
-            const value = event.target.checked;
-            console.log(value);
+        setDefaultValue(value);
+        GM.setValue(text, value);
+    };
+    useEffect(() => {
+        const getDefaultValue = async () => {
+            const value = await GM.getValue(text, false);
             handler(value, origin);
-            this.setState({ value });
-            GM.setValue(text, value);
+            setDefaultValue(value);
         };
-        return (
-            <>
-                <div className="dropdown-item">
-                    <div
-                        className="form-check form-switch"
-                        style={{ maxWidth: "max-content" }}
+        getDefaultValue();
+    }, []);
+    return (
+        <>
+            <div className="dropdown-item dropstart d-flex align-items-center ms-0">
+                <div
+                    className="form-check form-switch"
+                    style={{ maxWidth: "max-content" }}
+                >
+                    <input
+                        className="form-check-input px-1"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        checked={defaultValue}
+                        onChange={checkHandler}
+                    />
+                    <label
+                        className="form-check-label"
+                        data-bs-toggle="collapse"
+                        data-bs-target={
+                            collapseTarget ? `#${collapseTarget}` : ""
+                        }
                     >
-                        <input
-                            className="form-check-input px-1"
-                            type="checkbox"
-                            role="switch"
-                            id="flexSwitchCheckDefault"
-                            checked={this.state.value}
-                            onChange={checkHandler}
-                        />
-                        <label
-                            className="form-check-label"
-                            for="flexSwitchCheckDefault"
-                        >
-                            {text}
-                        </label>
-                    </div>
+                        {text}
+                    </label>
                 </div>
-            </>
-        );
-    }
-}
+            </div>
+        </>
+    );
+};
 
 export default PluginItem;
