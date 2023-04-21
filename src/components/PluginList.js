@@ -3,7 +3,7 @@ import PluginItem from "./PluginItem";
 import { compactLesson } from "../plugins/CompactLesson";
 import { useState } from "react";
 
-const PluginList = ({ origin }) => {
+const PluginList = () => {
     const [isHover, setHover] = useState(false);
 
     return (
@@ -17,12 +17,12 @@ const PluginList = ({ origin }) => {
             }}
         >
             <button
-                className="btn dropdown-toggle btn-link text-light"
+                className="btn dropdown-toggle"
                 data-bs-toggle="dropdown"
                 data-bs-auto-close="outside"
                 aria-expanded="false"
             >
-                <i className="fa fa-cog fa-lg" aria-hidden="true"></i>
+                ⚙
             </button>
 
             <ul
@@ -39,7 +39,6 @@ const PluginList = ({ origin }) => {
                     <PluginItem
                         text={"紧密的课程布局"}
                         handler={compactLesson}
-                        origin={origin}
                     />
                 </li>
             </ul>

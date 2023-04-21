@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-const PluginItem = ({ text, handler, origin, collapseTarget }) => {
+const PluginItem = ({ text, handler, collapseTarget }) => {
     const [defaultValue, setDefaultValue] = useState(false);
     const checkHandler = (event) => {
         const value = event.target.checked;
-        handler(value, origin);
+        handler(value);
         setDefaultValue(value);
         GM.setValue(text, value);
     };
     useEffect(() => {
         const getDefaultValue = async () => {
             const value = await GM.getValue(text, false);
-            handler(value, origin);
+            handler(value);
             setDefaultValue(value);
         };
         getDefaultValue();
