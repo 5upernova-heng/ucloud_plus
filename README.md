@@ -18,13 +18,20 @@ BUPT ucloud website enhancement script
 
 如果 TamperMonkey 没有自动检测，请手动到油猴的管理面板中通过 URL 添加。
 
-## 功能 & 计划
+## TODO
+
+### 功能
 
 - [x] 更紧密的课程列表
+- [x] 社恐模式（在页面中隐藏姓名班级信息）
 - [ ] 当取消勾选时，立即重载页面对应部分
 - [ ] 在首页“待办”中显示课程名称及链接
-- [ ] 社恐模式（在页面中隐藏姓名班级信息）
 - [ ] 在课程作业页面首页直接显示作业内容摘要
+
+### 代码结构
+
+- [ ] Extract valid pathname & related HTML elements
+
 
 ## 特别鸣谢
 

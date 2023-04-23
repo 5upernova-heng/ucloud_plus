@@ -2,9 +2,27 @@ import React from "react";
 import PluginItem from "./PluginItem";
 import { compactLesson } from "../plugins/CompactLesson";
 import { useState } from "react";
+import { hideInfo } from "../plugins/HideInfo";
 
 const PluginList = () => {
     const [isHover, setHover] = useState(false);
+
+    const list = [
+        {
+            name: "compactLesson",
+            label: "紧密的课程布局",
+            handler: compactLesson,
+        },
+        { name: "hideInfo", label: "隐藏个人信息", handler: hideInfo },
+    ];
+
+    const renderList = () => {
+        return list.map((plugin, index) => (
+            <li>
+                <PluginItem key={index} plugin={plugin} />
+            </li>
+        ));
+    };
 
     return (
         <div
@@ -35,12 +53,7 @@ const PluginList = () => {
                         : {}
                 }
             >
-                <li>
-                    <PluginItem
-                        text={"紧密的课程布局"}
-                        handler={compactLesson}
-                    />
-                </li>
+                {renderList()}
             </ul>
         </div>
     );

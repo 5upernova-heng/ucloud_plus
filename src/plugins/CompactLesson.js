@@ -1,4 +1,4 @@
-import { assignProperties, deleteElements } from "../utils";
+import { assignProperties, deleteElements, hideElements } from "../utils";
 
 export function compactLesson(isOpen) {
     if (
@@ -13,19 +13,17 @@ export function compactLesson(isOpen) {
             });
             assignProperties(".my-lesson-group", {
                 height: "unset",
-                "padding-top": "5px",
-                "padding-bottom": "5px",
+                paddingTop: "5px",
+                paddingBottom: "5px",
             });
             assignProperties(".my-lesson-item", {
                 height: "unset",
-                border: "gray",
-                "border-style": "solid",
-                "border-width": "1px",
-                "border-radius": "10px",
-                "padding-bottom": "8px",
+                border: "1px solid rgba(157,166,181,.5)",
+                borderRadius: "8px",
+                paddingBottom: "8px",
             });
+            hideElements(".header-control");
             deleteElements(".my-lesson-post");
-            deleteElements(".header-control");
         }
     }
 }

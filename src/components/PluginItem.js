@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-const PluginItem = ({ text, handler, collapseTarget }) => {
+const PluginItem = ({ plugin: { name, label, handler } }) => {
     const [defaultValue, setDefaultValue] = useState(false);
     const checkHandler = (event) => {
         const value = event.target.checked;
         handler(value);
         setDefaultValue(value);
-        GM.setValue(text, value);
+        GM.setValue(name, value);
     };
     useEffect(() => {
         const getDefaultValue = async () => {
-            const value = await GM.getValue(text, false);
+            const value = await GM.getValue(name, false);
             handler(value);
             setDefaultValue(value);
         };
@@ -27,19 +27,11 @@ const PluginItem = ({ text, handler, collapseTarget }) => {
                         className="form-check-input px-1"
                         type="checkbox"
                         role="switch"
-                        id="flexSwitchCheckDefault"
+                        id={name}
                         checked={defaultValue}
                         onChange={checkHandler}
                     />
-                    <label
-                        className="form-check-label"
-                        data-bs-toggle="collapse"
-                        data-bs-target={
-                            collapseTarget ? `#${collapseTarget}` : ""
-                        }
-                    >
-                        {text}
-                    </label>
+                    <label className="form-check-label">{label}</label>
                 </div>
             </div>
         </>

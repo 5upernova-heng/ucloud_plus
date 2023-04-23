@@ -26,6 +26,14 @@ export function assignProperties(selector, style) {
     });
 }
 
+export function hideElements(selector) {
+    assignProperties(selector, { visibility: "hidden" });
+}
+
+export function showElements(selector) {
+    assignProperties(selector, { visibility: "unset" });
+}
+
 export function deleteElements(selector) {
     waitForElements(selector).then((elements) => {
         const array = Array.from(elements);
