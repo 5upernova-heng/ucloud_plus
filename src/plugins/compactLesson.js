@@ -1,4 +1,4 @@
-import { assignProperties, deleteElements, hideElements } from "../utils";
+import { assignProperties, deleteElements, hideElements } from "../utils/page";
 
 export function compactLesson(isOpen) {
     if (

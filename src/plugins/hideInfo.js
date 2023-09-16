@@ -1,4 +1,4 @@
-import { hideElements, showElements } from "../utils";
+import { hideElements, showElements } from "../utils/page";
 
 export function hideInfo(isOpen) {
     if (

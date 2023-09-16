@@ -1,8 +1,8 @@
 import React from "react";
 import PluginItem from "./PluginItem";
-import { compactLesson } from "../plugins/CompactLesson";
+import { compactLesson } from "../plugins/compactLesson";
 import { useState } from "react";
-import { hideInfo } from "../plugins/HideInfo";
+import { hideInfo } from "../plugins/hideInfo";
 
 const PluginList = () => {
     const [isHover, setHover] = useState(false);

@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import PluginList from "./components/PluginList";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { waitForElements } from "./utils";
+import { waitForElements } from "./utils/page";
 
 async function scriptMain() {
     const r = document.createElement("div");
