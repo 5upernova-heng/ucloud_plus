@@ -1,10 +1,9 @@
 import {assignProperties, deleteElements, hideElements, waitForElements} from "../utils/page";
 
-export function compactLesson() {
-    let originalElement = null
+export function compactLesson(enable) {
+    if (!enable) return
     waitForElements(".my-lesson-section.home-card").then(
-        (value) => {
-            originalElement = value[0]
+        () => {
             assignProperties(".el-carousel__item", {
                 position: "relative",
                 transform: "unset",
