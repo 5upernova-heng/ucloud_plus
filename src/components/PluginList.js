@@ -32,9 +32,11 @@ const PluginList = () => {
     const listRef = useRef(null);
 
     const renderList = () => {
-        return list.map((plugin, index) => (
-            <PluginItem key={index} plugin={plugin}/>
-        ));
+        return list
+            .filter((plugin) => document.location.pathname.match(plugin.pathReg))
+            .map((plugin, index) => (
+                <PluginItem key={index} plugin={plugin}/>
+            ));
     };
 
     useEffect(() => {

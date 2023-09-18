@@ -20,21 +20,18 @@ const PluginItem = ({plugin: {name, label, handler, pathReg}}) => {
     }, [document.location.pathname]);
     return (
         <>
-            <div className="dropdown-item dropstart d-flex align-items-center ms-0">
+            <div>
                 <div
-                    className="form-check form-switch"
                     style={{maxWidth: "max-content"}}
                 >
                     <input
-                        className="form-check-input px-1"
                         type="checkbox"
                         role="switch"
-                        disabled={!document.location.pathname.match(pathReg)}
                         id={name}
                         checked={defaultValue}
                         onChange={checkHandler}
                     />
-                    <label className="form-check-label">{label}</label>
+                    <label>{label}</label>
                 </div>
             </div>
         </>
