@@ -61,16 +61,17 @@ const PluginList = () => {
                 cursor: "pointer",
             }}
             onClick={() => setView(true)}
-            onMouseEnter={() => {
-                setHover(true);
-            }}
-            onMouseLeave={() => {
-                if (!viewable)
-                    setHover(false);
-            }}
             ref={listRef}
         >
-            <div className="px-2 py-1 mx-4 text-3xl shadow rounded-full bg-white">
+            <div className="px-2 py-1 mx-4 text-3xl shadow rounded-full bg-white"
+                 onMouseEnter={() => {
+                     setHover(true);
+                 }}
+                 onMouseLeave={() => {
+                     if (!viewable)
+                         setHover(false);
+                 }}
+            >
                 ⚙
             </div>
             <div className={`absolute top-1/2 left-1/2 translate-x-1/4 -translate-y-1/2
