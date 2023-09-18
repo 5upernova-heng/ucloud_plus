@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
-const PluginItem = ({ plugin: { name, label, handler } }) => {
+const PluginItem = ({plugin: {name, label, handler, pathReg}}) => {
     const [defaultValue, setDefaultValue] = useState(false);
     const checkHandler = (event) => {
         const value = event.target.checked;
@@ -8,25 +8,28 @@ const PluginItem = ({ plugin: { name, label, handler } }) => {
         setDefaultValue(value);
         GM.setValue(name, value);
     };
+    const getDefaultValue = useCallback(async () => {
+        const value = await GM.getValue(name, false);
+        handler(value);
+        setDefaultValue(value);
+    }, [handler]);
     useEffect(() => {
-        const getDefaultValue = async () => {
-            const value = await GM.getValue(name, false);
-            handler(value);
-            setDefaultValue(value);
-        };
-        getDefaultValue();
-    }, []);
+        if (document.location.pathname.match(pathReg)) {
+            getDefaultValue().then();
+        }
+    }, [document.location.pathname]);
     return (
         <>
             <div className="dropdown-item dropstart d-flex align-items-center ms-0">
                 <div
                     className="form-check form-switch"
-                    style={{ maxWidth: "max-content" }}
+                    style={{maxWidth: "max-content"}}
                 >
                     <input
                         className="form-check-input px-1"
                         type="checkbox"
                         role="switch"
+                        disabled={!document.location.pathname.match(pathReg)}
                         id={name}
                         checked={defaultValue}
                         onChange={checkHandler}

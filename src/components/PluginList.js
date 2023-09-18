@@ -3,6 +3,7 @@ import PluginItem from "./PluginItem";
 import { compactLesson } from "../plugins/compactLesson";
 import { useState } from "react";
 import { hideInfo } from "../plugins/hideInfo";
+import {downloadAll} from "../plugins/downloadAll";
 
 const PluginList = () => {
     const [isHover, setHover] = useState(false);
@@ -12,8 +13,19 @@ const PluginList = () => {
             name: "compactLesson",
             label: "紧密的课程布局",
             handler: compactLesson,
+            pathReg: /\/uclass\/index.html/
         },
-        { name: "hideInfo", label: "隐藏个人信息", handler: hideInfo },
+        {   name: "hideInfo",
+            label: "隐藏个人信息",
+            handler: hideInfo,
+            pathReg: /\/uclass\/.*/
+        },
+        {
+            name: 'downloadAllFiles',
+            label: "下载全部资料",
+            handler: downloadAll,
+            pathReg: /\/uclass\/course.html/
+        }
     ];
 
     const renderList = () => {

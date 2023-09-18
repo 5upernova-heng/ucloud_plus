@@ -6,7 +6,6 @@
 // @author       You
 // @match        https://ucloud.bupt.edu.cn/uclass/course.html
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bupt.edu.cn
-// @grant        GM_xmlhttpRequest
 // ==/UserScript==
 import md5 from "md5";
 import {cookie} from "../utils/data";
@@ -16,7 +15,7 @@ function waitForElements(selector) {
         if (document.querySelectorAll(selector).length !== 0) {
             resolve(document.querySelectorAll(selector));
         }
-        const observer = new MutationObserver((mutations) => {
+        const observer = new MutationObserver(() => {
             if (document.querySelectorAll(selector).length !== 0) {
                 resolve(document.querySelectorAll(selector));
                 observer.disconnect();
@@ -41,15 +40,20 @@ function download() {
         url: fullUrl,
         headers: {
             'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.31',
-            'Blade-Auth':  cookie['iClass-refresh_token']
+            'Blade-Auth': cookie['iClass-refresh_token']
         },
         onload: function (response) {
             results = JSON.parse(response.responseText).data
-            results.map((attachment, index) => {
-                setTimeout(() => {
-                    console.log(attachment.attachmentVOs[0].attachmentInfoId)
-                    downloadAttachment(attachment.attachmentVOs[0].attachmentInfoId, attachment.resourceName)
-                }, index * 1000);
+            let count = 0
+            //console.log(results)
+            results.map((section) => {
+                section.attachmentVOs.map((attachment) => {
+                    //console.log(attachment.attachmentInfoId, attachment.resource.name)
+                    count += 1;
+                    setTimeout(() => {
+                        downloadAttachment(attachment.attachmentInfoId, attachment.resourceName)
+                    }, count * 1000);
+                })
             })
         }
     })

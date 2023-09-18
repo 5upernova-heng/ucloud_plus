@@ -55,6 +55,7 @@ module.exports = {
 // @author  5upernova-heng
 // @grant   GM_getValue
 // @grant   GM_setValue
+// @grant   GM_xmlhttpRequest
 // @match   https://ucloud.bupt.edu.cn/uclass/*
 // @downloadURL https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js
 // @updateURL   https://fastly.jsdelivr.net/gh/5upernova-heng/ucloud_plus@master/dist/main.js
