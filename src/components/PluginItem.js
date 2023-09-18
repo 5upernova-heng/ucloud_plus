@@ -1,38 +1,31 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect} from "react";
+import {useStoreState} from "../utils/hooks";
 
 const PluginItem = ({plugin: {name, label, handler, pathReg}}) => {
-    const [defaultValue, setDefaultValue] = useState(false);
-    const checkHandler = (event) => {
-        const value = event.target.checked;
-        handler(value);
-        setDefaultValue(value);
-        GM.setValue(name, value);
-    };
-    const getDefaultValue = useCallback(async () => {
-        const value = await GM.getValue(name, false);
-        handler(value);
-        setDefaultValue(value);
-    }, [handler]);
+    const [enable, setEnable] = useStoreState(name, false);
+    useEffect(() => {
+        GM.getValue(name, false).then(
+            (value) => {
+                if (value) handler();
+                setEnable(value);
+            }
+        );
+    }, [])
     useEffect(() => {
         if (document.location.pathname.match(pathReg)) {
-            getDefaultValue().then();
+            handler(enable)
         }
-    }, [document.location.pathname]);
+    }, [document.location.pathname, enable]);
     return (
         <>
-            <div>
-                <div
-                    style={{maxWidth: "max-content"}}
-                >
-                    <input
-                        type="checkbox"
-                        role="switch"
-                        id={name}
-                        checked={defaultValue}
-                        onChange={checkHandler}
-                    />
-                    <label>{label}</label>
+            <div className={`p-2 rounded-lg flex justify-between items-center border border-white 
+            ${enable ? "hover:border-green-500" : "hover:border-gray-500"}`}
+                 onClick={() => setEnable(!enable)}
+            >
+                <div className="text-xl font-bold">
+                    {label}
                 </div>
+                <div className={`ms-2 p-1.5 rounded-full ${enable ? "bg-green-500" : "bg-gray-500"}`}></div>
             </div>
         </>
     );

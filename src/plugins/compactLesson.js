@@ -1,11 +1,10 @@
-import { assignProperties, deleteElements, hideElements } from "../utils/page";
+import {assignProperties, deleteElements, hideElements, waitForElements} from "../utils/page";
 
-export function compactLesson(isOpen) {
-    if (
-        document.location.pathname === "/uclass/index.html" ||
-        document.location.pathname === "/uclass/"
-    ) {
-        if (isOpen) {
+export function compactLesson() {
+    let originalElement = null
+    waitForElements(".my-lesson-section.home-card").then(
+        (value) => {
+            originalElement = value[0]
             assignProperties(".el-carousel__item", {
                 position: "relative",
                 transform: "unset",
@@ -25,5 +24,5 @@ export function compactLesson(isOpen) {
             hideElements(".header-control");
             deleteElements(".my-lesson-post");
         }
-    }
+    )
 }

@@ -73,8 +73,8 @@ const PluginList = () => {
             <div className="px-2 py-1 mx-4 text-3xl shadow rounded-full bg-white">
                 ⚙
             </div>
-            <div className={`absolute p-1 top-1/2 left-1/2 translate-x-1/4 -translate-y-1/2
-            bg-white shadow rounded-lg w-max ${viewable ? "" : "opacity-0"}`}>
+            <div className={`absolute top-1/2 left-1/2 translate-x-1/4 -translate-y-1/2
+            bg-white shadow rounded-lg w-max flex flex-col gap-1 ${viewable ? "" : "opacity-0"}`}>
                 {renderList()}
             </div>
         </div>
