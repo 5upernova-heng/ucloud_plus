@@ -1,21 +1,22 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import PluginItem from "./PluginItem";
-import { compactLesson } from "../plugins/compactLesson";
-import { useState } from "react";
-import { hideInfo } from "../plugins/hideInfo";
+import {compactLesson} from "../plugins/compactLesson";
+import {hideInfo} from "../plugins/hideInfo";
 import {downloadAll} from "../plugins/downloadAll";
 
 const PluginList = () => {
     const [isHover, setHover] = useState(false);
+    const [viewable, setView] = useState(false);
 
     const list = [
         {
             name: "compactLesson",
             label: "紧密的课程布局",
             handler: compactLesson,
-            pathReg: /\/uclass\/index.html/
+            pathReg: /\/(uclass\/)?(index.html)?$/
         },
-        {   name: "hideInfo",
+        {
+            name: "hideInfo",
             label: "隐藏个人信息",
             handler: hideInfo,
             pathReg: /\/uclass\/.*/
@@ -28,45 +29,52 @@ const PluginList = () => {
         }
     ];
 
+    const listRef = useRef(null);
+
     const renderList = () => {
         return list.map((plugin, index) => (
-            <li>
-                <PluginItem key={index} plugin={plugin} />
-            </li>
+            <PluginItem key={index} plugin={plugin}/>
         ));
     };
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (listRef.current && !listRef.current.contains(event.target)) {
+                setView(false);
+                setHover(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [listRef]);
+
     return (
         <div
-            className="dropdown mx-3"
+            style={{
+                transition: "500ms",
+                transform: viewable || isHover ? "translateX(0)" : "translateX(-50%)",
+                cursor: "pointer",
+            }}
+            onClick={() => setView(true)}
             onMouseEnter={() => {
                 setHover(true);
             }}
             onMouseLeave={() => {
-                setHover(false);
+                if (!viewable)
+                    setHover(false);
             }}
+            ref={listRef}
         >
-            <button
-                className="btn dropdown-toggle"
-                data-bs-toggle="dropdown"
-                data-bs-auto-close="outside"
-                aria-expanded="false"
-            >
+            <div className="px-2 py-1 mx-4 text-3xl shadow rounded-full bg-white">
                 ⚙
-            </button>
-
-            <ul
-                className="dropdown-menu"
-                style={
-                    isHover
-                        ? {
-                              display: "block",
-                          }
-                        : {}
-                }
-            >
+            </div>
+            <div className={`absolute p-1 top-1/2 left-1/2 translate-x-1/4 -translate-y-1/2
+            bg-white shadow rounded-lg w-max ${viewable ? "" : "opacity-0"}`}>
                 {renderList()}
-            </ul>
+            </div>
         </div>
     );
 };

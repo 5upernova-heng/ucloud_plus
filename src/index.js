@@ -1,21 +1,19 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import {createRoot} from "react-dom/client";
 import PluginList from "./components/PluginList";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { waitForElements } from "./utils/page";
+import {assignProperties} from "./utils/page";
+import "/src/input.css"
 
 async function scriptMain() {
     const r = document.createElement("div");
     r.id = "root";
-    waitForElements(".right").then((elements) => {
-        const mountPoint = elements[0];
-        mountPoint.appendChild(r);
-        const root = createRoot(document.getElementById("root"));
-        root.render(<PluginList />);
-    });
+    assignProperties('#root', {position: "absolute", top: "50%",})
+    document.body.appendChild(r);
+    const root = createRoot(r);
+    root.render(<PluginList/>);
 }
 
 (function () {
     "use strict";
-    scriptMain();
+    scriptMain().then();
 })();

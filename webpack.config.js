@@ -9,14 +9,24 @@ module.exports = {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
     },
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+        },
+        port: 3000,
+        open: true,
+        hot: true,
+        compress: true,
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
+                use: ["style-loader", "css-loader", "postcss-loader"],
             },
             {
-                test: /\.m?js$/,
+                test: /\.m?jsx?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
