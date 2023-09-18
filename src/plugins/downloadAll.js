@@ -9,6 +9,7 @@
 // ==/UserScript==
 import md5 from "md5";
 import {cookie} from "../utils/data";
+import {deleteElements} from "../utils/page";
 
 function waitForElements(selector) {
     return new Promise((resolve) => {
@@ -40,9 +41,10 @@ function download() {
         url: fullUrl,
         headers: {
             'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.31',
-            'Blade-Auth': cookie['iClass-refresh_token']
+            'Blade-Auth': cookie['iClass-token']
         },
         onload: function (response) {
+            console.log(response)
             results = JSON.parse(response.responseText).data
             let count = 0
             //console.log(results)
@@ -70,13 +72,25 @@ function downloadAttachment(id, name) {
     document.body.removeChild(link);
 }
 
-export function downloadAll() {
-    'use strict';
-    const button = document.createElement("button")
-    button.innerText = "Download All"
-    button.onclick = download
-    waitForElements(".el-tooltip.left.iclass-text-ellipsis").then((elements) => {
-        const mountPoint = elements[0];
-        mountPoint.appendChild(button);
-    });
+export function downloadAll(enable) {
+    if (enable) {
+        if (document.getElementById("downloadAll")) return;
+        const button = document.createElement("i")
+        button.title = "下载全部"
+        button.onclick = download
+        button.className = "by-icon-download me-4"
+
+        const div = document.createElement("div")
+        div.id = "downloadAll"
+        div.className = "flex justify-end py-2"
+        div.appendChild(button)
+        waitForElements(".el-collapse.chapter").then((elements) => {
+            const mountPoint = elements[0]
+            mountPoint.parentNode.insertBefore(div, mountPoint);
+        });
+    } else {
+        if (document.getElementById("downloadAll")) {
+            deleteElements("#downloadAll")
+        }
+    }
 }
