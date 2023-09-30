@@ -11,12 +11,9 @@ function parseCookie() {
 }
 
 
-function createQueryString(url, params) {
-    let result = `${url}?`
-    for (let key in params) {
-        result += `${key}=${params[key]}&`
-    }
-    return result
-}
-
 export const cookie = parseCookie()
+
+export const headerWithAuth = {
+    'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.31',
+    'Blade-Auth': cookie['iClass-token']
+}

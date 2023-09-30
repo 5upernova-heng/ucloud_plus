@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "webpack serve",
+    "dev": "webpack --watch",
     "build": "webpack"
   },
   "license": "MIT",

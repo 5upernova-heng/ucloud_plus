@@ -17,17 +17,15 @@ const PluginItem = ({plugin: {name, label, handler, pathReg}}) => {
         }
     }, [document.location.pathname, enable]);
     return (
-        <>
-            <div className={`p-2 rounded-lg flex justify-between items-center border border-white 
+        <div className={`p-2 rounded-lg flex justify-between items-center border border-white 
             ${enable ? "hover:border-green-500" : "hover:border-gray-500"}`}
-                 onClick={() => setEnable(!enable)}
-            >
-                <div className="text-xl font-bold">
-                    {label}
-                </div>
-                <div className={`ms-2 p-1.5 rounded-full ${enable ? "bg-green-500" : "bg-gray-500"}`}></div>
+             onClick={() => setEnable(!enable)}
+        >
+            <div className="text-xl font-bold">
+                {label}
             </div>
-        </>
+            <div className={`ms-2 p-1.5 rounded-full ${enable ? "bg-green-500" : "bg-gray-500"}`}></div>
+        </div>
     );
 };
 

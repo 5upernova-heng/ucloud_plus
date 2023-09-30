@@ -8,7 +8,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bupt.edu.cn
 // ==/UserScript==
 import md5 from "md5";
-import {cookie} from "../utils/data";
+import {cookie, headerWithAuth} from "../utils/data";
 import {deleteElements} from "../utils/page";
 
 function waitForElements(selector) {
@@ -39,18 +39,12 @@ function download() {
     GM_xmlhttpRequest({
         method: 'POST',
         url: fullUrl,
-        headers: {
-            'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.31',
-            'Blade-Auth': cookie['iClass-token']
-        },
+        headers: headerWithAuth,
         onload: function (response) {
-            console.log(response)
             results = JSON.parse(response.responseText).data
             let count = 0
-            //console.log(results)
             results.map((section) => {
                 section.attachmentVOs.map((attachment) => {
-                    //console.log(attachment.attachmentInfoId, attachment.resource.name)
                     count += 1;
                     setTimeout(() => {
                         downloadAttachment(attachment.attachmentInfoId, attachment.resourceName)

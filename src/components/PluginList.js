@@ -3,6 +3,7 @@ import PluginItem from "./PluginItem";
 import {compactLesson} from "../plugins/compactLesson";
 import {hideInfo} from "../plugins/hideInfo";
 import {downloadAll} from "../plugins/downloadAll";
+import {showIndex} from "../plugins/showIndex/showIndex";
 
 const PluginList = () => {
     const [isHover, setHover] = useState(false);
@@ -26,6 +27,12 @@ const PluginList = () => {
             label: "下载全部资料",
             handler: downloadAll,
             pathReg: /\/uclass\/course.html/
+        },
+        {
+            name: 'showIndex',
+            label: "显示课程目录",
+            handler: showIndex,
+            pathReg: /\/uclass\/.*/,
         }
     ];
 

@@ -3,11 +3,12 @@ import {createRoot} from "react-dom/client";
 import PluginList from "./components/PluginList";
 import {assignProperties} from "./utils/page";
 import "/src/input.css"
+import {PluginListStyle} from "./style";
 
-async function scriptMain() {
+function scriptMain() {
     const r = document.createElement("div");
     r.id = "root";
-    assignProperties('#root', {position: "absolute", top: "50%",})
+    assignProperties('#root', PluginListStyle)
     document.body.appendChild(r);
     const root = createRoot(r);
     root.render(<PluginList/>);
@@ -15,5 +16,5 @@ async function scriptMain() {
 
 (function () {
     "use strict";
-    scriptMain().then();
+    scriptMain();
 })();
