@@ -20,15 +20,16 @@ BUPT ucloud website enhancement script
 
 - [x] 更紧密的课程列表
 - [x] 社恐模式（在页面中隐藏姓名班级信息）
+- [x] bootstrap -> tailwind
 - [ ] 当取消勾选时，立即重载页面对应部分
 - [ ] 更好的页面跳转逻辑
 - [ ] 在课程作业页面首页直接显示作业内容摘要
-- [ ] Javascript -> Typescript
-- [ ] bootstrap -> tailwind
+- [ ] 插件设置
 
 ## 特别鸣谢
 
 - [React](https://react.dev/)
 - [Bootstrap](https://getbootstrap.com/)
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
 - [popper-core](https://github.com/popperjs/popper-core)
 - [Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved)
