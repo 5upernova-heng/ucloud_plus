@@ -38,24 +38,32 @@ function tapSiteItem(e, t) {
 }
 ```
 
-`site` 是获取全部数据时的课程对象。
+其中 `site` 是获取全部数据时的课程对象。
 
-要切换页面，就要把对应 iClass-site-id 字段设置成目标课程的 ID，并将 localStorage 的 site 设置成目标课程对象（字符串形式）
+可见，要切换页面，就要把对应 iClass-site-id 字段设置成目标课程的 ID，并将 localStorage 的 site 设置成目标课程对象（字符串形式）
 
-> 设置 Cookie
+> **设置 Cookie**
 > 对 `document.cookie` 进行赋值就可以设置 cookie，同名 cookie 不会覆盖，但是会优先使用后设置的 cookie
 
 ### 作业页面
 
 `/uclass/course.html#/student/assignmentDetails_fullpage`
 
-- assignmentId（必选）: 作业的 ID
+- assignmentId: 作业的 ID
 - activeTabName: 控制显示哪个 Tab。比如 first/second。 建议选择，这样跳转过去时不会是未选中 tab 的空白页面。
 
-### 云平台主页
+## 获取资源
 
-### 获取资源
+### 下载资源
 
-### 资源下载
+`https://apiucloud.bupt.edu.cn/blade-source/resource/download`
 
+- resourceId: 资源 ID
+- oauthKey: `md5(resouceID + gZTwLteBkHIxHhXFMcQvUMjosqYWPuzTcQwYKpFidkFcradHFm)`（后缀是一个固定的字符串）
 
+### 获取单个课程的所有 resourceID
+
+`https://apiucloud.bupt.edu.cn/ykt-site/site-resource/tree/student`
+
+- siteId: 课程 ID，与用于页面跳转的 ID 相同
+- userId: 用户 ID
