@@ -18,6 +18,22 @@ GET `/ykt-site/site/list/student/current?`
 - current: 用于分页，当前已经获取的位置
 - userId: 用户 ID
 
+### 获取作业数据
+
+GET `/ykt-site/work/detail?`
+
+- assignmentId: 作业 ID
+
+### 获取单个课程所有作业
+
+POST `/ykt-site/work/student/list`
+
+Payload:
+
+- siteId: "1694993661990801409"
+- userId: "1430436570924810294"
+- current: 1
+
 ## 页面跳转
 
 ### 课程主页
