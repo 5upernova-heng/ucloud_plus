@@ -3,7 +3,7 @@ import {cookie, headerWithAuth} from "../../utils/data";
 import IndexListItem from "./IndexListItem";
 
 const base = "https://apiucloud.bupt.edu.cn"
-const coursePage = "course.html#/student/courseHomePage?ind=1"
+const coursePage = "https://ucloud.bupt.edu.cn/uclass/course.html#/student/courseHomePage?ind=1"
 
 function IndexList() {
     const [sites, setSites] = useState([])
@@ -14,7 +14,7 @@ function IndexList() {
             return <div className="text-lg cursor-pointer" onClick={() => {
                 document.cookie = `iClass-site-id=${id}`
                 window.localStorage.setItem('site', JSON.stringify(site));
-                if (window.location.pathname === "/uclass/course.html") {
+                if (window.location.href === coursePage) {
                     window.location.reload();
                 } else {
                     window.location.href = coursePage;
