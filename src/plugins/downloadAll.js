@@ -30,6 +30,24 @@ function waitForElements(selector) {
     });
 }
 
+let count = 0;
+
+function downloadSection(section) {
+    const attachments = section.attachmentVOs;
+    const children = section.children;
+    attachments.map((attachment) => {
+        if (attachment.resource.id !== undefined) {
+            setTimeout(() => {
+                downloadAttachment(attachment.resource.id, attachment.resource.name);
+            }, count * 500);
+        }
+        count += 1;
+    })
+    children.map((child) => {
+        downloadSection(child);
+    })
+}
+
 function download() {
     const url = "https://apiucloud.bupt.edu.cn/ykt-site/site-resource/tree/student";
     const siteId = cookie['iClass-site-id']
@@ -42,14 +60,9 @@ function download() {
         headers: headerWithAuth,
         onload: function (response) {
             results = JSON.parse(response.responseText).data
-            let count = 0
+            console.log(results)
             results.map((section) => {
-                section.attachmentVOs.map((attachment) => {
-                    count += 1;
-                    setTimeout(() => {
-                        downloadAttachment(attachment.attachmentInfoId, attachment.resourceName)
-                    }, count * 1000);
-                })
+                downloadSection(section);
             })
         }
     })
