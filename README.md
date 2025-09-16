@@ -1,10 +1,5 @@
 # ucloud_plus
 
-> # 由于教学云平台已经升级，加上毕业客观原因，无法继续维护仓库 
-> 
-> ![图片](https://github.com/user-attachments/assets/05ecfaf4-87c7-49fa-a5b3-e2d400f2abc4)
-
-
 北京邮电大学云邮教学空间优化脚本
 
 为了优化云平台的部分交互体验，写了这样一个小脚本。
